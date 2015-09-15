@@ -1,12 +1,27 @@
+// Translates a message into PigLatin
+var translateMessage = function(message) {
+  var wordArray = message.toLowerCase().split(/\s+/g);
+  var pigLatinArray = [];
+  for (var i = 0; i < wordArray.length; i++) {
+
+    pigLatinArray.push(translateWord(wordArray[i]));
+  }
+  var pigLatinMessage = pigLatinArray.join(" ");
+  return pigLatinMessage;
+};
+
 // Helper method for translate: translate a word into Pig Latin
 var translateWord = function(word) {
-  var word = word.toLowerCase();
+  var word = word;
   var translatedWord = "";
   var ending = "ay";
 
   if (endsWithPunctuation(word)) {
-    ending += word.slice(-1);
-    word = word.substring(0, word.length - 1);
+    // Create an array of all substrings of nonwords
+    var nonwords = word.substring(0).match(/\W+/g);
+    var endingPunctuation = nonwords[nonwords.length - 1];
+    ending += endingPunctuation;
+    word = word.replace(endingPunctuation, "");
   }
 
   if (startsWithVowel(word)) {
@@ -16,11 +31,11 @@ var translateWord = function(word) {
   } else {
     translatedWord = word.slice(1) + word.slice(0, 1) + ending;
   }
-
   return translatedWord;
+
 };
 
-//Helper method for translateWord: moves final punctuation to the end of the translated word
+// Helper method for translateWord: moves final punctuation to the end of the translated word
 var endsWithPunctuation = function(word) {
   var lastLetter = word.slice(-1);
   if (word.match(/\W+/g)) {
@@ -46,14 +61,14 @@ var startsWithDigraph = function(word) {
 
 $(document).ready(function() {
   $("form#pigLatin").submit(function(event) {
-     var message = $("input#message").val();
-     var translated = translateWord(message);
+    var message = $("input#message").val();
+    var translated = translateMessage(message);
 
-     // Populate data
-     $(".original").text(message);
-     $(".translated").text(translated);
+    // Populate data
+    $(".original").text(message);
+    $(".translated").text(translated);
 
-     $("#result").show();
-     event.preventDefault();
-   });
- });
+    $("#result").show();
+    event.preventDefault();
+  });
+});
