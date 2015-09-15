@@ -2,16 +2,32 @@
 var translateWord = function(word) {
   var word = word.toLowerCase();
   var translatedWord = "";
+  var ending = "ay";
+
+  if (endsWithPunctuation(word)) {
+    ending += word.slice(-1);
+    word = word.substring(0, word.length - 1);
+  }
 
   if (startsWithVowel(word)) {
-    translatedWord = word + "ay";
+    translatedWord = word + ending;
   } else if (startsWithDigraph(word)) {
-    translatedWord = word.slice(2) + word.slice(0, 2) + "ay";
+    translatedWord = word.slice(2) + word.slice(0, 2) + ending;
   } else {
-    translatedWord = word.slice(1) + word.slice(0, 1) + "ay";
+    translatedWord = word.slice(1) + word.slice(0, 1) + ending;
   }
 
   return translatedWord;
+};
+
+//Helper method for translateWord: moves final punctuation to the end of the translated word
+var endsWithPunctuation = function(word) {
+  var lastLetter = word.slice(-1);
+  if (word.match(/\W+/g)) {
+    return true;
+  } else {
+    return false;
+  }
 };
 
 // Helper method for translateWord: determine if word starts with vowel

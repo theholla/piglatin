@@ -11,7 +11,17 @@ describe("translateWord", function() {
     expect(translateWord("eat")).to.equal("eatay");
   });
 
-  it("treates y as a consonant", function() {
+  it("treats y as a consonant", function() {
     expect(translateWord("yellow")).to.equal("ellowyay");
+  });
+
+  it("handles nonword characters", function() {
+    expect(translateWord("don't!")).to.equal("on'tday!");
+  });
+});
+
+describe("translateMessage", function() {
+  it("translates the entire message into PigLatin", function() {
+    expect(translateMessage("Happy birthday!")).to.equal("appyhay irthdaybay!");
   });
 });
