@@ -1,3 +1,7 @@
 #result {
   display: none;
 }
+
+.well {
+  background-color: #33CC66;
+}
