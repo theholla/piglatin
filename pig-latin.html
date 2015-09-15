@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
+    <link href="css/styles.css" rel="stylesheet" type="text/css">
+    <script src="js/jquery-1.11.3.js"></script>
+    <script src="js/scripts.js"></script>
+    <title>Pig Latin</title>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Pig Latin</h1>
+
+      <form id="pigLatin">
+        <div class="form-group">
+          <label for="message">Enter a message to translate into Pig Latin!</label>
+          <input id="message" type="text" class="form-control" placeholder="Ex. Hello World">
+        </div>
+
+        <button type="submit" class="btn">Go!</button>
+      </form>
+
+      <hr>
+
+      <div id="result">
+
+        <h3>Original message:</h3>
+        <div class="well">
+          <span class="original"></span>
+        </div>
+
+        <h3>Translated message:</h3>
+        <div class="well">
+          <span class="translated"></span>
+        </div>
+
+      </div>
+    </div>
+  </body>
+</html>
