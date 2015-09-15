@@ -1,22 +1,31 @@
+// Helper method for translate: translate a word into Pig Latin
 var translateWord = function(word) {
-  var regexp = /[AEIOU]/gi;
-  var firstLetter = word.slice(0, 1);
+  var word = word.toLowerCase();
   var translatedWord = "";
 
-  var firstTwoLetters = word.slice(0,2);
-  var digraph = ["th", "ch", "ph", "sh", "qu"];
-  var isDigraph = digraph.indexOf(firstTwoLetters) !== -1;
-
-  if (firstLetter.match(regexp)) {
+  if (startsWithVowel(word)) {
     translatedWord = word + "ay";
-  } else if (isDigraph) {
-    debugger;
-    translatedWord = word.slice(2) + firstTwoLetters + "ay";
+  } else if (startsWithDigraph(word)) {
+    translatedWord = word.slice(2) + word.slice(0, 2) + "ay";
   } else {
-    debugger;
     translatedWord = word.slice(1) + word.slice(0, 1) + "ay";
   }
+
   return translatedWord;
+};
+
+// Helper method for translateWord: determine if word starts with vowel
+var startsWithVowel = function(word) {
+  var vowels = ["a", "e", "i", "o", "u"];
+  var firstLetter = word.slice(0, 1);
+  return vowels.indexOf(firstLetter) !== -1;
+};
+
+// Helper method for translateWord: determine if word starts with vowel
+var startsWithDigraph = function(word) {
+  var digraphs = ["th", "ch", "ph", "sh", "qu"];
+  var firstTwoLetters = word.slice(0, 2);
+  return digraphs.indexOf(firstTwoLetters) !== -1;
 };
 
 $(document).ready(function() {

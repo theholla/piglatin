@@ -10,4 +10,8 @@ describe("translateWord", function() {
   it("appends 'ay' to a word for word starting with vowels", function() {
     expect(translateWord("eat")).to.equal("eatay");
   });
+
+  it("treates y as a consonant", function() {
+    expect(translateWord("yellow")).to.equal("ellowyay");
+  });
 });
